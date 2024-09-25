@@ -11,15 +11,17 @@
     <header class="atm-header">
         <a href="#">
             <img src="../IMG/Bank.jpg" alt="Icono de Pokémon" class="navbar-icon me-2">
-            Pokémon Bank...  
-             
         </a>
+    
+        <h2>POKEMON BANK</h2>
+    
         <div class="login-icon">
-            <i class="fas fa-sign-in-alt">
-                <img href="Index.html" src="../IMG/imagen2.gif" alt="">
-            </i>
+            <a href="Index.html">
+                <img src="../IMG/imagen2.gif" alt="Login Icon">
+            </a>
         </div>
     </header>
+    
     <div class="welcome-message">
         <p><span class="username">Iris Aguilar</span> Bienvenida</p>
         <p>numero de cuenta: PKB-1980-04071429</p>
@@ -28,294 +30,81 @@
     <main>
         <div class="container">
             <div class="atm-menu">
-                           <div class="row">
-                               <div class="col-md-6">
-                                   <ul class="menu-list">
-                                       <li>
-                                           <a href="#saldoconsulta" class="menu-button">Consultar Saldo</a>
-                                           <div id="saldoconsulta" class="poke-overlay">
-                                               <div class="poke-content">
-                                                   <h2>Consultar Saldo</h2>
-                                                   <p>Su saldo actual es de 2000,000 PokéDólares.</p>
-                                                   <a href="#" class="close-btn">Cerrar</a>
-                                               </div>
-                                           </div>
-                                       </li>
-                                       <li>
-                                           <a href="#retirarefectivo" class="menu-button">Retirar Efectivo</a>
-                                           <div id="retirarefectivo" class="poke-overlay">
-                                               <div class="poke-content">
-                                                   <h2>Retirar Efectivo</h2>
-                                                   <p>Ingrese la cantidad a retirar:</p>
-                                                   <form action="#mensajeExitoso" method="GET">
-                                                       <input type="number" name="cantidadRetiro" placeholder="Cantidad a retirar" min="1" step="any" required>
-                                                       <button type="submit" class="withdraw-btn">Retirar</button>
-                                                   </form>
-                                                   <a href="#" class="close-btn">Cerrar</a>
-                                               </div>
-                                           </div>
-                                       </li>
-                                       
-                                       <div id="mensajeExitoso" class="poke-overlay">
-                                           <div class="poke-content">
-                                               <h2>¡Retiro Exitoso!</h2>
-                                               <p>Haz realizado un retiro: <span id="cantidadRetiro"></span></p>
-                                               <p>Gracias por usar ATM Pokemon Bank</p>
-                                               <a href="#" class="close-btn">Cerrar</a>
-                                           </div>
-                                       </div>
-                                       <li>
-                                           <a href="#depositar" class="menu-button">Depositar</a>
-                                           
-                                           <div id="depositar" class="poke-overlay">
-                                               <div class="poke-content">
-                                                   <h2>Depositar</h2>
-                                                   <p>Ingrese la cantidad a depositar:</p>
-                                                   <input type="number" placeholder="Cantidad a depositar" class="form-control" />
-                                                   <a href="#mensajeExito" class="confirm-btn">Confirmar</a>
-                                                   <a href="#" class="close-btn">Cerrar</a>
-                                               </div>
-                                           </div>
-                                       </li>
-                                       
-                                       <div id="mensajeExito" class="poke-overlay">
-                                           <div class="poke-content">
-                                               <h2>¡Éxito!</h2>
-                                               <p>Depósito realizado con éxito.</p>
-                                               <a href="#" class="close-btn">Cerrar</a>
-                                           </div>
-                                       </div>
-
-                                       <li>
-                                        <a href="#consultarTransacciones" class="menu-button">Consultar Transacciones</a>
-                                        <div id="consultarTransacciones" class="poke-overlay">
-                                            <div class="poke-content">
-                                                <h2>Consultar Transacciones</h2>
-                                                <p>Ingrese el rango de fechas para consultar:</p>
-                                                <form id="consultar-form">
-                                                    <input type="date" name="fechaInicio" class="form-control" required />
-                                                    <input type="date" name="fechaFin" class="form-control" required />
-                                                    <button type="submit">Consultar</button>
-                                                </form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="menu-list">
+                            <li>
+                                <a href="#saldoconsulta" class="menu-button">Consultar Saldo</a>
+                                <div id="saldoconsulta" class="poke-overlay">
+                                    <div class="poke-content">
+                                        <h2>Consultar Saldo</h2>
+                                        <p>Su saldo actual es de 2000,000 PokéDólares.</p>
+                                        <a href="#" class="close-btn">Cerrar</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#retirarefectivo" class="menu-button">Retirar Efectivo</a>
+                                <div id="retirarefectivo" class="poke-overlay">
+                                    <div class="poke-content">
+                                        <h2>Retirar Efectivo</h2>
+                                        <p>Ingrese la cantidad a retirar:</p>
+                                        <form action="#mensajeExitoso" method="GET">
+                                            <input type="number" name="cantidadRetiro" placeholder="Cantidad a retirar" min="1" step="any" required>
+                                            <button type="submit" class="withdraw-btn">Retirar</button>
+                                        </form>
+                                        <a href="#" class="close-btn">Cerrar</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <div id="mensajeExitoso" class="poke-overlay">
+                                <div class="poke-content">
+                                    <h2>¡Retiro Exitoso!</h2>
+                                    <p>Haz realizado un retiro: <span id="cantidadRetiro"></span></p>
+                                    <p>Gracias por usar ATM Pokemon Bank</p>
+                                    <a href="#" class="close-btn">Cerrar</a>
+                                </div>
+                            </div>
+                            <li>
+                                <a href="#depositar" class="menu-button">Depositar</a>
+                                <div id="depositar" class="poke-overlay">
+                                    <div class="poke-content">
+                                        <h2>Depositar</h2>
+                                        <p>Ingrese la cantidad a depositar:</p>
+                                        <input type="number" placeholder="Cantidad a depositar" class="form-control" />
+                                        <a href="#mensajeExito" class="confirm-btn">Confirmar</a>
+                                        <a href="#" class="close-btn">Cerrar</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <div id="mensajeExito" class="poke-overlay">
+                                <div class="poke-content">
+                                    <h2>¡Éxito!</h2>
+                                    <p>Depósito realizado con éxito.</p>
+                                    <a href="#" class="close-btn">Cerrar</a>
+                                </div>
+                            </div>
+                            <li>
+                                <a href="#consultarTransacciones" class="menu-button">Consultar Transacciones</a>
+                                <div id="consultarTransacciones" class="poke-overlay">
+                                    <div class="poke-content">
+                                        <h2>Consultar Transacciones</h2>
+                                        <p>Ingrese el rango de fechas para consultar:</p>
+                                        <form id="consultar-form">
+                                            <input type="date" name="fechaInicio" class="form-control" required />
+                                            <input type="date" name="fechaFin" class="form-control" required />
+                                            <button type="submit">Consultar</button>
+                                        </form>
+                                        <table id="transaction-history-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Fecha</th>
+                                                    <th>Descripción</th>
+                                                    <th>Monto</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                                 
-                                                <!-- Tabla para mostrar el historial de transacciones -->
-                                                <table id="transaction-history-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Fecha</th>
-                                                            <th>Descripción</th>
-                                                            <th>Monto</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <!-- Aquí se mostrarán las transacciones -->
-                                                    </tbody>
-                                                </table>
-                                                <a href="#" class="close-btn">Cerrar</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-
-                                    <li> <!-- Vamos a poner la grafica aqui -->
-                                        <a href="#graficoTransacciones" class="menu-button">Grafica de transacciones</a>
-                                        <div id="graficoTransacciones" class="poke-overlay">
-                                            <div class="poke-content">
-                                                <h2>Grafico de transacciones</h2>
-                                                <p>Ingrese el rango de fechas para consultar:</p>
-                                                <form action="GraficoTransacciones.html" method="GET">
-                                                
-                                                    <input type="date" name="fechaInicio" class="form-control" required />
-                                                    <input type="date" name="fechaFin" class="form-control" required />
-                                                    <button type="submit">Consultar</button>
-                                                </form>
-                                                
-                                                <!-- Tabla para mostrar el historial de transacciones -->
-                                                
-                                                <a href="#" class="close-btn">Cerrar</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                       
-                                   </ul>
-                               </div>
-           
-                               <div class="col-md-6">
-                                   <ul class="menu-list">
-                                       <li>
-                                           <a href="#transferirpoke" class="menu-button">Transferir</a>
-                                           <div id="transferirpoke" class="poke-overlay">
-                                               <div class="poke-content">
-                                                   <h2>Transferir</h2>
-                                                   <p>Ingrese los detalles de la transferencia:</p>
-                                                   <input type="text" placeholder="Número de cuenta" class="form-control" />
-                                                   <input type="number" placeholder="Cantidad a transferir" class="form-control" />
-                                                   <a href="#" class="send-btn">Enviar</a> <!-- Cambiado a send-btn -->
-                                                   <a href="#" class="close-btn">Cerrar</a>
-                                               </div>
-                                           </div>
-                                       </li>
-                                       
-                                       <li>
-                                           <a href="#recargarpoke" class="menu-button">Recargar Poké Dolares</a>
-                                           <div id="recargarpoke" class="poke-overlay">
-                                               <div class="poke-content">
-                                                   <h2>Recargar Poké $</h2>
-                                                   <p>Seleccione la cantidad de Poke a recargar:</p>
-                                                   <input type="number" placeholder="Cantidad de Poké $" class="form-control" />
-                                                   <button class="add-btn">Agregar</button>
-                                                   <a href="#" class="close-btn">Cerrar</a>
-                                               </div>
-                                           </div>
-                                       </li>
-                                       <li>
-                                           <a href="#pagopoke" class="menu-button">Pagar Servicios</a>
-                                           <div id="pagopoke" class="poke-overlay">
-                                               <div class="poke-content">
-                                                   <h2>Pagar Servicios</h2>
-                                                   <p>Ingrese el código del servicio a pagar:</p>
-                                                   <input type="text" placeholder="NPEXXXXXXXXXX" class="form-control" maxlength="12" pattern="^NPE\d{10}$" title="Formato: NPE seguido de 10 dígitos." required />
-                                                   
-                                                   <p>Seleccione el tipo de servicio:</p>
-                                                   <select class="form-control" required>
-                                                       <option value="" disabled selected>Seleccione un servicio</option>
-                                                       <br>
-                                                       <br>
-                                                       <option value="agua">Agua</option>
-                                                       <br>
-                                                       <br>
-                                                       <option value="luz">Luz</option>
-                                                       <br>
-                                                       <br>
-                                                       <option value="internet">Internet</option>
-                                                       <br>
-                                                       <br>
-                                                       <option value="telefono">Teléfono</option>
-                                                       <br>
-                                                       <br>
-                                                       <option value="funeraria">Universidad</option>
-                                                   </select>
-                                       
-                                                   <div class="poke">
-                                                       <div class="poke-content">
-                                                           <h2>Datos de Pago</h2>
-                                                           <form>
-                                                               <label for="cardName">Nombre en la tarjeta:</label>
-                                                               <input type="text" id="cardName" name="cardName" required>
-                                                   
-                                                               <label for="cardNumber">Número de tarjeta:</label>
-                                                               <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" maxlength="16">
-                                                   
-                                                               <label for="expMonth">Mes de expiración:</label>
-                                                               <input type="text" id="expMonth" name="expMonth" required pattern="\d{2}" maxlength="2">
-                                                   
-                                                               <label for="expYear">Año de expiración:</label>
-                                                               <input type="text" id="expYear" name="expYear" required pattern="\d{2}" maxlength="2">
-                                                   
-                                                               <label for="cvv">CVV:</label>
-                                                               <input type="text" id="cvv" name="cvv" required pattern="\d{3}" maxlength="3">
-                                                               <br>
-                                                               <br>                                        
-                                                               <button type="submit" id="confirmPayment">Confirmar Pago</button>
-                                                               
-                                                           </form>
-                                                           
-                                                           <div id="paymentSuccessPopup" class="popup-overlay" style="display: none;">
-                                                               <div class="popup-content">
-                                                                 <h2>¡Pago Exitoso!</h2>
-                                                                 <p>Tu pago ha sido procesado correctamente.</p>
-                                                                 <span class="checkmark">✔️</span>
-                                                                 <a href="#" class="close-btn">Cerrar</a>
-                                                               </div>
-                                                             </div>
-           
-                                                       </div>
-                                                   </div>
-                                                   <a href="#" class="close-btn">Cerrar</a>
-                                               </div>
-                                           </div>
-                                       </li>
-                                       <li>
-                                           <a href="#CambiarPin" class="menu-button">Cambiar PIN</a>
-                                           <div id="CambiarPin" class="poke-overlay">
-                                               <div class="poke-content">
-                                                   <h2>Cambiar PIN</h2>
-                                                   <form action="#successPoke" method="GET"> <!-- Redirige a la sección del mensaje de éxito -->
-                                                       <label for="nuevoPin">Ingresa Nuevo PIN:</label>
-                                                       <input type="password" id="nuevoPin" name="nuevoPin" required minlength="4" maxlength="6" placeholder="4-6 dígitos">
-                                                       <a href="#" onclick="mostrarExito()">Cambiar PIN</a>
-
-                                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                                                <script>
-                                                    function mostrarExito() {
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: '¡Cambio de PIN exitoso!',
-                                                            showConfirmButton: true,
-                                                            confirmButtonText: 'Cerrar',
-                                                        }).then((result) => {
-                                                            if (result.isConfirmed) {
-                                                                window.location.href = "Index.html"; // Redirige a index.html después de cerrar el modal
-                                                            }
-                                                        });
-                                                    }
-                                                </script>
-                                                   </form>
-                                                   <a href="#" class="close-btn">Cerrar</a>
-                                               </div>
-                                           </div>
-                                       
-                                           
-                                                
-                                                  
-                                           
-                                       </li>
-                                       <li>
-                                        <div class="Salir-content">
-                                            <a href="#" onclick="confirmarSalida()" class="menu-button">Salir</a>
-                                        </div>
-                                        
-                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                                        <script>
-                                            function confirmarSalida() {
-                                                Swal.fire({
-                                                    title: '¿Estás seguro de que quieres salir?',
-                                                    icon: 'warning',
-                                                    showCancelButton: true,
-                                                    confirmButtonText: 'Sí, salir',
-                                                    cancelButtonText: 'Cancelar',
-                                                    confirmButtonColor: '#3085d6',
-                                                    cancelButtonColor: '#d33'
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
-                                                        window.location.href = "Index.html"; // Redirige a index.html después de confirmar la salida
-                                                    }
-                                                });
-                                            }
-                                        </script>
-                                        
-                                       </li>
-                                   </ul>
-                               </div>
-           
-                           </div> <!-- Fin de la fila -->
-                       </div> <!-- Fin del menú ATM -->
-                    </div>
-
-    </main>
-   
-
-
-    
-   
-    <footer class="footer py-3 mt-5">
-        
-        <div class="container text-center">
-            <span> ©Nintendo</span>
-        </div>
-    </footer>
-</body>
 <script>
     // Array para almacenar las transacciones
     let transactions = [];
@@ -398,5 +187,202 @@
         });
     });
 </script>
+                                                <!-- Aquí se mostrarán las transacciones -->
+                                            </tbody>
+                                        </table>
+                                        <a href="#" class="close-btn">Cerrar</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#graficoTransacciones" class="menu-button">Gráfica de transacciones</a>
+                                <div id="graficoTransacciones" class="poke-overlay">
+                                    <div class="poke-content">
+                                        <h2>Gráfica de transacciones</h2>
+                                        <p>Ingrese el rango de fechas para consultar:</p>
+                                        <form action="GraficoTransacciones.html" method="GET">
+                                            <input type="date" name="fechaInicio" class="form-control" required />
+                                            <input type="date" name="fechaFin" class="form-control" required />
+                                            <button type="submit">Consultar</button>
+                                        </form>
+                                        <a href="#" class="close-btn">Cerrar</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="menu-list">
+                            <li>
+                                <a href="#transferirpoke" class="menu-button">Transferir</a>
+                                <div id="transferirpoke" class="poke-overlay">
+                                    <div class="poke-content">
+                                        <h2>Transferir</h2>
+                                        <p>Ingrese los detalles de la transferencia:</p>
+                                        <input type="text" placeholder="Número de cuenta" class="form-control" />
+                                        <input type="number" placeholder="Cantidad a transferir" class="form-control" />
+                                        <a href="#" class="send-btn">Enviar</a>
+                                        <a href="#" class="close-btn">Cerrar</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#recargarpoke" class="menu-button">Recargar Poké Dólares</a>
+                                <div id="recargarpoke" class="poke-overlay">
+                                    <div class="poke-content">
+                                        <h2>Recargar Poké $</h2>
+                                        <p>Seleccione la cantidad de Poké a recargar:</p>
+                                        <input type="number" placeholder="Cantidad de Poké $" class="form-control" />
+                                        <button class="add-btn">Agregar</button>
+                                        <a href="#" class="close-btn">Cerrar</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#pagopoke" class="menu-button">Pagar Servicios</a>
+                                <div id="pagopoke" class="poke-overlay">
+                                    <div class="poke-content">
+                                        <h2>Pagar Servicios</h2>
+                                        <p>Ingrese el código del servicio a pagar:</p>
+                                        <input type="text" placeholder="NPEXXXXXXXXXX" class="form-control" maxlength="12" pattern="^NPE\d{10}$" title="Formato: NPE seguido de 10 dígitos." required />
+                                        <p>Seleccione el tipo de servicio:</p>
+                                        <select class="form-control" required>
+                                            <option value="" disabled selected>Seleccione un servicio</option>
+                                            <option value="agua">Agua</option>
+                                            <option value="luz">Luz</option>
+                                            <option value="internet">Internet</option>
+                                            <option value="telefono">Teléfono</option>
+                                            <option value="universidad">Universidad</option>
+                                        </select>
+                                        <div class="poke">
+                                            <div class="poke-content">
+                                                <h2>Datos de Pago</h2>
+                                                <form id="paymentForm">
+                                                    <label for="cardName">Nombre en la tarjeta:</label>
+                                                    <input type="text" id="cardName" name="cardName" required>
+                                                    <label for="cardNumber">Número de tarjeta:</label>
+                                                    <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" maxlength="16">
+                                                    <label for="expMonth">Mes de expiración:</label>
+                                                    <input type="text" id="expMonth" name="expMonth" required pattern="\d{2}" maxlength="2">
+                                                    <label for="expYear">Año de expiración:</label>
+                                                    <input type="text" id="expYear" name="expYear" required pattern="\d{4}" maxlength="4">
+                                                    <button type="submit">Pagar</button>
+                                                </form>
+                                                <p id="paymentResponse"></p>
+                                                <a href="#" class="close-btn">Cerrar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <script>
+                                document.getElementById('paymentForm').addEventListener('submit', function(event) {
+                                    event.preventDefault(); // Prevenir que el formulario se envíe de forma tradicional
+                                    
+                                    // Aquí puedes hacer la validación o enviar los datos del formulario con AJAX
+                                    const cardName = document.getElementById('cardName').value;
+                                    const cardNumber = document.getElementById('cardNumber').value;
+                                    const expMonth = document.getElementById('expMonth').value;
+                                    const expYear = document.getElementById('expYear').value;
+                            
+                                    if (cardName && cardNumber && expMonth && expYear) {
+                                        // Si los datos son válidos, mostrar SweetAlert
+                                        Swal.fire({
+                                            title: '¡Pago Exitoso!',
+                                            text: 'Tu pago ha sido procesado con éxito.',
+                                            icon: 'success',
+                                            confirmButtonText: 'Aceptar'
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Error',
+                                            text: 'Por favor, revisa los datos del pago.',
+                                            icon: 'error',
+                                            confirmButtonText: 'Intentar de nuevo'
+                                        });
+                                    }
+                                });
+                            </script>
+                            
+                            
+                            <li>
+                                <a href="#CambiarPin" class="menu-button">Cambiar PIN</a>
+                                <div id="CambiarPin" class="poke-overlay">
+                                    <div class="poke-content">
+                                        <h2>Cambiar PIN</h2>
+                                        <form action="#successPoke" method="GET"> <!-- Redirige a la sección del mensaje de éxito -->
+                                            <label for="nuevoPin">Ingresa Nuevo PIN:</label>
+                                            <input type="password" id="nuevoPin" name="nuevoPin" required minlength="4" maxlength="6" placeholder="4-6 dígitos">
+                                            <a href="#" onclick="mostrarExito()">Cambiar PIN</a>
+
+                                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                     <script>
+                                         function mostrarExito() {
+                                             Swal.fire({
+                                                 icon: 'success',
+                                                 title: '¡Cambio de PIN exitoso!',
+                                                 showConfirmButton: true,
+                                                 confirmButtonText: 'Cerrar',
+                                             }).then((result) => {
+                                                 if (result.isConfirmed) {
+                                                     window.location.href = "Index.html"; // Redirige a index.html después de cerrar el modal
+                                                 }
+                                             });
+                                         }
+                                     </script>
+                                        </form>
+                                        <a href="#" class="close-btn">Cerrar</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <div class="Salir-content">
+                                <a href="#" onclick="confirmarSalida()" class="menu-button">Salir</a>
+                            </div>
+                            
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            <script>
+                                function confirmarSalida() {
+                                    Swal.fire({
+                                        title: '¿Estás seguro de que quieres salir?',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Sí, salir',
+                                        cancelButtonText: 'Cancelar',
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.href = "Index.html"; // Redirige a index.html después de confirmar la salida
+                                        }
+                                    });
+                                }
+                            </script>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <br>
+    <br>
+    <footer>
+        <div class="footer-image-container">
+            <img src="../IMG/Floating Pikachu.gif" alt="Pokémon Bank" class="responsive-image">
+            <div class="footer-text-overlay">
+                <p>© Nintendo, pokemonBank.</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="../JS/menu.js"></script>
+</body>
+
+
 
 </html>
