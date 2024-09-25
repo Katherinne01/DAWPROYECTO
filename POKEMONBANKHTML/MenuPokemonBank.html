@@ -116,6 +116,27 @@
                                         </div>
                                     </li>
                                     
+
+                                    <li> <!-- Vamos a poner la grafica aqui -->
+                                        <a href="#graficoTransacciones" class="menu-button">Grafica de transacciones</a>
+                                        <div id="graficoTransacciones" class="poke-overlay">
+                                            <div class="poke-content">
+                                                <h2>Grafico de transacciones</h2>
+                                                <p>Ingrese el rango de fechas para consultar:</p>
+                                                <form action="GraficoTransacciones.html" method="GET">
+                                                
+                                                    <input type="date" name="fechaInicio" class="form-control" required />
+                                                    <input type="date" name="fechaFin" class="form-control" required />
+                                                    <button type="submit">Consultar</button>
+                                                </form>
+                                                
+                                                <!-- Tabla para mostrar el historial de transacciones -->
+                                                
+                                                <a href="#" class="close-btn">Cerrar</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
                                        
                                    </ul>
                                </div>
