@@ -158,11 +158,11 @@
                                        </li>
                                        
                                        <li>
-                                           <a href="#recargarpoke" class="menu-button">Recargar $ Poké Dolares</a>
+                                           <a href="#recargarpoke" class="menu-button">Recargar Poké Dolares</a>
                                            <div id="recargarpoke" class="poke-overlay">
                                                <div class="poke-content">
                                                    <h2>Recargar Poké $</h2>
-                                                   <p>Seleccione la cantidad de Poke $ a recargar:</p>
+                                                   <p>Seleccione la cantidad de Poke a recargar:</p>
                                                    <input type="number" placeholder="Cantidad de Poké $" class="form-control" />
                                                    <button class="add-btn">Agregar</button>
                                                    <a href="#" class="close-btn">Cerrar</a>
@@ -244,29 +244,57 @@
                                                    <form action="#successPoke" method="GET"> <!-- Redirige a la sección del mensaje de éxito -->
                                                        <label for="nuevoPin">Ingresa Nuevo PIN:</label>
                                                        <input type="password" id="nuevoPin" name="nuevoPin" required minlength="4" maxlength="6" placeholder="4-6 dígitos">
-                                                       <button type="submit" class="submit-btn">Cambiar PIN</button>
+                                                       <a href="#" onclick="mostrarExito()">Cambiar PIN</a>
+
+                                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                                <script>
+                                                    function mostrarExito() {
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: '¡Cambio de PIN exitoso!',
+                                                            showConfirmButton: true,
+                                                            confirmButtonText: 'Cerrar',
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                window.location.href = "Index.html"; // Redirige a index.html después de cerrar el modal
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
                                                    </form>
                                                    <a href="#" class="close-btn">Cerrar</a>
                                                </div>
                                            </div>
                                        
-                                           <div id="successPoke" class="poke-overlay">
-                                               <div class="poke-content">
-                                                   <h2>✔️ Cambio de PIN exitoso</h2>
-                                                   <a href="Index.html" class="close-btn">Cerrar</a> <!-- Redirige a index.html -->
-                                               </div>
-                                           </div>
+                                           
+                                                
+                                                  
+                                           
                                        </li>
                                        <li>
-                                           <a href="#salirpoke" class="menu-button">Salir</a>
-                                           <div id="salirPoke" class="poke-overlay">
-                                               <div class="poke-content">
-                                                   <h2>Salir</h2>
-                                                   <p>¿Está seguro de que desea salir?</p>
-                                                   <a href="../POKEMONBANKHTML/Index.html" class="close-btn">Cerrar</a>
-                                                   <a href="../POKEMONBANKHTML/Index.html" class="confirm-btn">Confirmar</a> 
-                                               </div>
-                                           </div>
+                                        <div class="Salir-content">
+                                            <a href="#" onclick="confirmarSalida()" class="menu-button">Salir</a>
+                                        </div>
+                                        
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                        <script>
+                                            function confirmarSalida() {
+                                                Swal.fire({
+                                                    title: '¿Estás seguro de que quieres salir?',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonText: 'Sí, salir',
+                                                    cancelButtonText: 'Cancelar',
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        window.location.href = "Index.html"; // Redirige a index.html después de confirmar la salida
+                                                    }
+                                                });
+                                            }
+                                        </script>
+                                        
                                        </li>
                                    </ul>
                                </div>
