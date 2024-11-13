@@ -6,6 +6,7 @@
     <title>Cajero Pokemon Bank</title>
     <link rel="stylesheet" href="../CSS/menupokemon.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <header class="atm-header">
@@ -23,8 +24,8 @@
     </header>
     
     <div class="welcome-message">
-        <p><span class="username">Iris Aguilar</span> Bienvenida</p>
-        <p>numero de cuenta: PKB-1980-04071429</p>
+        <p><span class="username" id="userName">ASH KETCHUM</span> Bienvenido</p>
+        <p id="cuenta">numero de cuenta: : 0987654321</p>
     </div>
     
     <main>
@@ -36,10 +37,12 @@
                             <li>
                                 <a href="#saldoconsulta" class="menu-button">Consultar Saldo</a>
                                 <div id="saldoconsulta" class="poke-overlay">
-                                    <div class="poke-content">
-                                        <h2>Consultar Saldo</h2>
-                                        <p>Su saldo actual es de 2000,000 PokéDólares.</p>
+                                    <div class="poke-content">                                        
+                                        <h2>Consultar Saldo</h2>                                       
+                                        <p id="saldo">Su saldo actual es de $500.00 PokéDólares.</p>                                        
                                         <a href="#" class="close-btn">Cerrar</a>
+                                        <button type="button" class="download-btn" id="btnsaldo">Descargar PDF</button>
+                                    
                                     </div>
                                 </div>
                             </li>
@@ -49,8 +52,9 @@
                                     <div class="poke-content">
                                         <h2>Retirar Efectivo</h2>
                                         <p>Ingrese la cantidad a retirar:</p>
-                                        <form action="#mensajeExitoso" method="GET">
-                                            <input type="number" name="cantidadRetiro" placeholder="Cantidad a retirar" min="1" step="any" required>
+                                        <form id="formRetiro" action="#mensajeExitoso" method="GET">
+                                            <input type="number" id="cantidadRetiro" name="cantidadRetiro" placeholder="Cantidad a retirar" min="1" step="any" required>
+                                            <div class="error" style="color: red;"></div>
                                             <button type="submit" class="withdraw-btn">Retirar</button>
                                         </form>
                                         <a href="#" class="close-btn">Cerrar</a>
@@ -60,9 +64,10 @@
                             <div id="mensajeExitoso" class="poke-overlay">
                                 <div class="poke-content">
                                     <h2>¡Retiro Exitoso!</h2>
-                                    <p>Haz realizado un retiro: <span id="cantidadRetiro"></span></p>
+                                    <p>Haz realizado un retiro de $: <span id="cantidadRetiroExitoso"></span></p>
                                     <p>Gracias por usar ATM Pokemon Bank</p>
                                     <a href="#" class="close-btn">Cerrar</a>
+                                    <button type="button" class="download-btn" id="btnretiro">Descargar PDF</button>
                                 </div>
                             </div>
                             <li>
@@ -82,6 +87,7 @@
                                     <h2>¡Éxito!</h2>
                                     <p>Depósito realizado con éxito.</p>
                                     <a href="#" class="close-btn">Cerrar</a>
+                                    <button type="button" class="download-btn" id="btndeposito">Descargar PDF</button>
                                 </div>
                             </div>
                             <li>
@@ -105,92 +111,13 @@
                                             </thead>
                                             <tbody>
                                                 
-<script>
-    // Array para almacenar las transacciones
-    let transactions = [];
 
-    // Función para agregar una nueva transacción al historial
-    function addTransaction(description, amount) {
-        const date = new Date().toLocaleString(); // Obtener fecha y hora actual
-        transactions.push({ date, description, amount }); // Agregar transacción al array
-        renderTransactions(); // Actualizar la tabla
-    }
-
-    // Función para renderizar el historial de transacciones en la tabla
-    function renderTransactions() {
-        const tbody = document.querySelector('#transaction-history-table tbody');
-        tbody.innerHTML = ''; // Limpiar el contenido previo
-
-        transactions.forEach(transaction => {
-            const tr = document.createElement('tr');
-
-            // Crear las celdas de la tabla
-            const dateTd = document.createElement('td');
-            dateTd.textContent = transaction.date;
-
-            const descriptionTd = document.createElement('td');
-            descriptionTd.textContent = transaction.description;
-
-            const amountTd = document.createElement('td');
-            amountTd.textContent = transaction.amount;
-
-            // Agregar celdas a la fila
-            tr.appendChild(dateTd);
-            tr.appendChild(descriptionTd);
-            tr.appendChild(amountTd);
-
-            // Agregar la fila al tbody
-            tbody.appendChild(tr);
-        });
-    }
-
-    // Ejemplo: Simulación de transacciones iniciales
-    addTransaction('Depósito', '2000 PokéDólares');
-    addTransaction('Retiro', '500 PokéDólares');
-    addTransaction('Transferencia', '300 PokéDólares');
-
-    // Evento para filtrar las transacciones por rango de fechas
-    document.getElementById('consultar-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita el envío del formulario
-
-        const fechaInicio = new Date(this.querySelector('input[name="fechaInicio"]').value);
-        const fechaFin = new Date(this.querySelector('input[name="fechaFin"]').value);
-
-        const tbody = document.querySelector('#transaction-history-table tbody');
-        tbody.innerHTML = ''; // Limpiar el contenido previo
-
-        transactions.forEach(transaction => {
-            const transactionDate = new Date(transaction.date);
-
-            // Filtrar transacciones dentro del rango de fechas
-            if (transactionDate >= fechaInicio && transactionDate <= fechaFin) {
-                const tr = document.createElement('tr');
-
-                // Crear las celdas de la tabla
-                const dateTd = document.createElement('td');
-                dateTd.textContent = transaction.date;
-
-                const descriptionTd = document.createElement('td');
-                descriptionTd.textContent = transaction.description;
-
-                const amountTd = document.createElement('td');
-                amountTd.textContent = transaction.amount;
-
-                // Agregar celdas a la fila
-                tr.appendChild(dateTd);
-                tr.appendChild(descriptionTd);
-                tr.appendChild(amountTd);
-
-                // Agregar la fila al tbody
-                tbody.appendChild(tr);
-            }
-        });
-    });
-</script>
                                                 <!-- Aquí se mostrarán las transacciones -->
                                             </tbody>
                                         </table>
                                         <a href="#" class="close-btn">Cerrar</a>
+                                        <button type="button" class="download-btn" id="btnhistorial">Descargar PDF</button>
+                                        
                                     </div>
                                 </div>
                             </li>
@@ -206,6 +133,7 @@
                                             <button type="submit">Consultar</button>
                                         </form>
                                         <a href="#" class="close-btn">Cerrar</a>
+                                        <button type="button" class="download-btn" id="btngrafico">Descargar PDF</button>
                                     </div>
                                 </div>
                             </li>
@@ -223,6 +151,8 @@
                                         <input type="number" placeholder="Cantidad a transferir" class="form-control" />
                                         <a href="#" class="send-btn">Enviar</a>
                                         <a href="#" class="close-btn">Cerrar</a>
+                                        <button type="button" class="download-btn" id="btntransferencia">Descargar PDF</button>
+                                        
                                     </div>
                                 </div>
                             </li>
@@ -235,6 +165,7 @@
                                         <input type="number" placeholder="Cantidad de Poké $" class="form-control" />
                                         <button class="add-btn">Agregar</button>
                                         <a href="#" class="close-btn">Cerrar</a>
+                                        <button type="button" class="download-btn" id="btnrecarga">Descargar PDF</button>
                                     </div>
                                 </div>
                             </li>
@@ -270,40 +201,13 @@
                                                 </form>
                                                 <p id="paymentResponse"></p>
                                                 <a href="#" class="close-btn">Cerrar</a>
+                                                <button type="button" class="download-btn" id="btnpago">Descargar PDF</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             
-                            <script>
-                                document.getElementById('paymentForm').addEventListener('submit', function(event) {
-                                    event.preventDefault(); // Prevenir que el formulario se envíe de forma tradicional
-                                    
-                                    // Aquí puedes hacer la validación o enviar los datos del formulario con AJAX
-                                    const cardName = document.getElementById('cardName').value;
-                                    const cardNumber = document.getElementById('cardNumber').value;
-                                    const expMonth = document.getElementById('expMonth').value;
-                                    const expYear = document.getElementById('expYear').value;
-                            
-                                    if (cardName && cardNumber && expMonth && expYear) {
-                                        // Si los datos son válidos, mostrar SweetAlert
-                                        Swal.fire({
-                                            title: '¡Pago Exitoso!',
-                                            text: 'Tu pago ha sido procesado con éxito.',
-                                            icon: 'success',
-                                            confirmButtonText: 'Aceptar'
-                                        });
-                                    } else {
-                                        Swal.fire({
-                                            title: 'Error',
-                                            text: 'Por favor, revisa los datos del pago.',
-                                            icon: 'error',
-                                            confirmButtonText: 'Intentar de nuevo'
-                                        });
-                                    }
-                                });
-                            </script>
                             
                             
                             <li>
@@ -317,20 +221,7 @@
                                             <a href="#" onclick="mostrarExito()">Cambiar PIN</a>
 
                                      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                                     <script>
-                                         function mostrarExito() {
-                                             Swal.fire({
-                                                 icon: 'success',
-                                                 title: '¡Cambio de PIN exitoso!',
-                                                 showConfirmButton: true,
-                                                 confirmButtonText: 'Cerrar',
-                                             }).then((result) => {
-                                                 if (result.isConfirmed) {
-                                                     window.location.href = "Index.html"; // Redirige a index.html después de cerrar el modal
-                                                 }
-                                             });
-                                         }
-                                     </script>
+                                    
                                         </form>
                                         <a href="#" class="close-btn">Cerrar</a>
                                     </div>
@@ -341,23 +232,6 @@
                             </div>
                             
                             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                            <script>
-                                function confirmarSalida() {
-                                    Swal.fire({
-                                        title: '¿Estás seguro de que quieres salir?',
-                                        icon: 'warning',
-                                        showCancelButton: true,
-                                        confirmButtonText: 'Sí, salir',
-                                        cancelButtonText: 'Cancelar',
-                                        confirmButtonColor: '#3085d6',
-                                        cancelButtonColor: '#d33'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            window.location.href = "Index.html"; // Redirige a index.html después de confirmar la salida
-                                        }
-                                    });
-                                }
-                            </script>
                             
                         </ul>
                     </div>
@@ -378,9 +252,18 @@
     </footer>
     
     
-
+    <script src="../JS/printPDF.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="../JS/menu.js"></script>
+    <script src="../JS/transacciones.js"></script>
+    <script src="../JS/salida.js"></script>
+<script src="../JS/Validaciondatos.js"></script>
+<script src="../JS/Datosusuario.js"></script>
+<script src="../JS/Retiro.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
 </body>
 
 
