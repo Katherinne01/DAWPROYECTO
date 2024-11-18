@@ -1,18 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cajero Pokemon Bank</title>
+    <title>Cajero Pokémon Bank</title>
     <link rel="stylesheet" href="../CSS/menupokemon.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        /* Animación para el gráfico cuando cambia */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #transaccion-form button {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <header class="atm-header">
         <a href="#">
             <img src="../IMG/Bank.jpg" alt="Icono de Pokémon" class="navbar-icon me-2">
-            Pokémon Bank...  
-             
+            Pokémon Bank...
         </a>
         <div class="login-icon">
             <i class="fas fa-sign-in-alt">
@@ -20,50 +48,132 @@
             </i>
         </div>
     </header>
+
     <div class="welcome-message">
-        <p><span class="username">Iris Aguilar</span> Bienvenida</p>
-        <p>numero de cuenta: PKB-1980-04071429</p>
+        <p><span class="username" id="user-name">Ash Ketchum</span> Bienvenido</p>
+        <p>Numero de cuenta: PKB-1980-04071429</p>
+        <p><strong>Saldo inicial:</strong> <span id="user-balance">500.00</span> PokéDolares</p>
     </div>
 
-    <br>
-    <br>
-    <br>
+    <br><br><br>
 
+    <h3>Visualizar gráfico de transacciones:</h3>
+    <form id="transaccion-form">
+        <label for="tipo-transaccion">Selecciona tipo de transacción:</label>
+        <select id="tipo-transaccion">
+            <option value="Todos">Todos</option>
+            <option value="Deposito">Depósito</option>
+            <option value="Retiro">Retiro</option>
+            <option value="Pago de Servicios">Pago de Servicios</option>
+            <option value="Recarga Pokedolares">Recarga Pokedolares</option>
+        </select><br><br>
 
+        <button type="button" onclick="consultarTransacciones()">Consultar</button>
+    </form>
 
-    <div>
+    <br><br>
+
+    <div class="chart-container">
         <canvas id="myChart"></canvas>
-      </div>
-      
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      
-      <script>
-        const ctx = document.getElementById('myChart');
-      
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
-            datasets: [{
-              label: 'Transacciones por mes',
-              data: [12, 19, 3, 5, 2, 3],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-      <br>
-      <br>
-      <br>
+    </div>
 
-  
+    <br><br>
+
     <a href="MenuPokemonBank.html" class="close-btn">Salir</a>
-    
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Datos iniciales
+        const initialData = {
+            name: "Ash Ketchum",
+            pin: "1234",
+            accountNumber: "PKB-1980-04071429",
+            initialBalance: 500.00,
+            transactions: [
+                { type: "Deposito", amount: 100, date: "2024-11-01" },
+                { type: "Retiro", amount: 50, date: "2024-11-02" },
+                { type: "Pago de Servicios", amount: 30, date: "2024-11-03" },
+                { type: "Recarga Pokedolares", amount: 20, date: "2024-11-04" },
+                { type: "Retiro", amount: 40, date: "2024-11-18" },
+                { type: "Deposito", amount: 60, date: "2024-11-18" }
+            ]
+        };
+
+        // Guardar datos iniciales en localStorage si no existen
+        function initializeLocalStorage() {
+            if (!localStorage.getItem("userData")) {
+                localStorage.setItem("userData", JSON.stringify(initialData));
+            }
+        }
+
+        // Cargar datos desde localStorage
+        function cargarDatosUsuario() {
+            const storedData = localStorage.getItem("userData");
+            return storedData ? JSON.parse(storedData) : null;
+        }
+
+        // Guardar datos actualizados en localStorage
+        function guardarDatosUsuario(data) {
+            localStorage.setItem("userData", JSON.stringify(data));
+        }
+
+        // Mostrar gráfico de transacciones
+        function visualizarGrafico(transacciones, tipoTransaccion) {
+            const diasDelMes = Array.from({ length: 30 }, (_, i) => String(i + 1).padStart(2, '0'));
+            const transactionCounts = diasDelMes.map(dia => 
+                transacciones.filter(transaction => 
+                    new Date(transaction.date).getDate() === parseInt(dia)
+                ).length
+            );
+
+            const canvas = document.getElementById('myChart');
+            if (canvas.chart) {
+                canvas.chart.destroy();
+            }
+
+            const ctx = canvas.getContext('2d');
+            canvas.chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: diasDelMes,
+                    datasets: [{
+                        label: `Número de transacciones - ${tipoTransaccion}`,
+                        data: transactionCounts,
+                        borderWidth: 1,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Consultar y actualizar transacciones
+        function consultarTransacciones() {
+            const userData = cargarDatosUsuario();
+            const tipoTransaccion = document.getElementById('tipo-transaccion').value;
+
+            const transaccionesFiltradas = userData.transactions.filter(transaccion => 
+                tipoTransaccion === "Todos" || transaccion.type === tipoTransaccion
+            );
+
+            visualizarGrafico(transaccionesFiltradas, tipoTransaccion);
+
+            // Simular una nueva transacción añadida (puedes ajustar según sea necesario)
+            userData.transactions.push({ type: "Deposito", amount: 120, date: new Date().toISOString().split('T')[0] });
+            guardarDatosUsuario(userData);
+        }
+
+        // Inicializar localStorage al cargar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            initializeLocalStorage();
+        });
+    </script>
+</body>
+</html>
